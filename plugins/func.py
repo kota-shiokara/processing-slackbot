@@ -8,3 +8,7 @@ def kill_process(message):
     message.send('See you!')
     print('process finished')
     sys.exit()
+
+@listen_to('!processing')
+def processing(message):
+    message.send('wait...')
