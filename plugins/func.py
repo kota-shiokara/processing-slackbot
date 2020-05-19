@@ -10,8 +10,8 @@ def kill_process(message):
     sys.exit()
 
 @listen_to('!processing (.*)')
-def processing(message, arg):
-    text = message.body['text']
-    print(text)
-    print(arg)
+def processing(message, arg): # argはオプション
+    tmp = message.body['text']
+    pdecode = tmp.strip("!processing " + arg + "\n")
+    print(pdecode)
     message.send('wait...')
