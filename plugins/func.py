@@ -12,6 +12,8 @@ def kill_process(message):
 @listen_to('!processing (.*)')
 def processing(message, arg): # argはオプション
     tmp = message.body['text']
-    pdecode = tmp.strip("!processing " + arg + "\n")
-    print(pdecode)
+    pdeCode = tmp.strip("!processing " + arg + "\n")
+    print(pdeCode)
     message.send('wait...')
+    pictFunc = "if((frameCount <= 600) && (frameCount % 15 == 0)) saveFrame(\"####.png\");\nelse exit();"
+    calcCode = pdeCode.replace("void draw(){", "void draw(){\n" + pictFunc)
