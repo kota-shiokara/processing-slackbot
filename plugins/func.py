@@ -48,8 +48,9 @@ def shaping_code(code, option):
 def upload_sequence(message, option):
     if option == '--png': # pngオプション
         message.channel.upload_file(fname="sketch/0015.png", fpath="sketch/0015.png")
-        if os.path.exists('sketch/0015.png'):
-            os.remove('sketch/0015.png')
+        for p in glob.glob('sketch/*.png'):
+                if os.path.isfile(p):
+                    os.remove(p)
     elif option == '--gif': # gifオプション
         time.sleep(6)
         file_list = sorted(glob.glob('sketch/*.png'))  
@@ -63,6 +64,7 @@ def upload_sequence(message, option):
             os.remove('sketch/output.gif')
     else : # デフォルトではpngでupload
         message.channel.upload_file(fname="sketch/0015.png", fpath="sketch/0015.png")
-        if os.path.exists('sketch/0015.png'):
-            os.remove('sketch/0015.png')
+        for p in glob.glob('sketch/*.png'):
+                if os.path.isfile(p):
+                    os.remove(p)
 
