@@ -61,7 +61,7 @@ $ pip install Pillow
 <a id="chapter2-1"></a>
 
 ## botの作成
-はじめにbotの作成を行います。[こちら](https://my.slack.com/services/new/bot)のページからbotを作成します。
+botの作成を行います。[こちら](https://my.slack.com/services/new/bot)のページからbotを作成します。
 APIトークンの取得を行い、設定を保存してください。トークンを忘れた場合は`https://<ワークスペースのURL>/apps`のページからボットインテグレーションを探してください。
 
 <a id="chapter2-2"></a>
