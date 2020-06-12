@@ -5,8 +5,7 @@ A Slack bot that turns a Processing sketch into a GIF or png
 このbotはSlack上で稼働し、「Processingのスケッチを代行して画像化もしくはGIF化しチャンネルに出力する」ということを目的にPython3で書かれたものです。
 processing-java、Pyhon3が実行できる環境である必要があります。
 
-
-目次
+## 目次
 - [環境構築](#chapter1)
     - [使用言語](#chapter1-1)
     - [Python3使用ライブラリ](#chapter1-2)
@@ -16,6 +15,13 @@ processing-java、Pyhon3が実行できる環境である必要があります�
     - [botの作成](#chapter2-1)
     - [botの設定](#chapter2-2)
     - [botの起動](#chapter2-3)
+
+- [Author](#chapter3)
+
+- [開発について](#chapter4)
+
+- [License](#chapter5)
+
 
 <a id="chapter1"></a>
 
@@ -92,16 +98,28 @@ $ python3 run.py
 
 その後、slack側でbotが入ってるチャンネルに`!output --<pngもしくはgif>`を1行目につけてprocessingのコードを投稿してください。
 - pngの例
+
 <img width="500" alt="png" src="https://user-images.githubusercontent.com/50353938/84533388-ff2f3a80-ad22-11ea-8839-b56323610076.png">
 
 - gifの例
+
 ![gif](https://user-images.githubusercontent.com/50353938/84533112-73b5a980-ad22-11ea-8be7-43886afdb9ab.gif)
 
+<a id="chapter3"></a>
 
 # Author
 - [kota-shiokara](https://github.com/kota-shiokara)
-- Email:ikanoshiokara.fun@gmail.com
+- Email: ikanoshiokara.fun@gmail.com
+- Twitter: @shiokara_create
 
-# ライセンス
-[MIT license](https://choosealicense.com/licenses/mit/)
+<a id="chapter4"></a>
+
+# 開発について
+バグの報告、改善の要望につきましては[issue](https://github.com/kota-shiokara/processing-slackbot/issues)もしくは上記連絡先にお願いします。
+[更新履歴はこちら](version.md)
+
+<a id="chapter5"></a>
+
+# License
+[MIT License](https://choosealicense.com/licenses/mit/)
 
