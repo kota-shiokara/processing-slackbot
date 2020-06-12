@@ -1,6 +1,3 @@
-# processing-slackbot
-A Slack bot that turns a Processing sketch into a GIF or png
-
 # はじめに
 このbotはSlack上で稼働し、「Processingのスケッチを代行して画像化もしくはGIF化しチャンネルに出力する」ということを目的にPython3で書かれたものです。
 processing-java、Pyhon3が実行できる環境である必要があります。
@@ -110,7 +107,7 @@ $ python3 run.py
 # Author
 - [kota-shiokara](https://github.com/kota-shiokara)
 - Email: ikanoshiokara.fun@gmail.com
-- Twitter: @shiokara_create
+- Twitter: [@shiokara_create](https://twitter.com/shiokara_create)
 
 <a id="chapter4"></a>
 
