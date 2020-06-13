@@ -14,14 +14,15 @@ from slackbot.bot import respond_to  # @botname: で反応するデコーダ
 from .cfg import *  # 同じ階層のcfg.pyからimport
 
 
-@listen_to('!exit') # 使い物にならない関数
+@listen_to('!exit')  # 使い物にならない関数
 def kill_process(message):
     message.send('See you!')
     print('process finished')
     sys.exit()
 
+
 @listen_to('!output (.*)')
-def output(message, arg): # argはオプション
+def output(message, arg):  # argはオプション
     # 送信されたテキストを整形
     tmp = message.body['text']
     tmp = tmp.replace("&lt;", "<")
@@ -35,47 +36,53 @@ def output(message, arg): # argはオプション
     print(pdeCode)
     with open('sketch/sketch.pde', 'w') as f:
         f.write(pdeCode)
-        
+
     # f = open('sketch/sketch.pde', 'w')
     # f.write(pdeCode)
     # f.close()
 
-    cp = subprocess.run(['processing-java',  sketch_path, '--run']) # processingの実行
-    if cp.returncode != 0: # processingの実行失敗時の処理
+    cp = subprocess.run(
+        ['processing-java',  sketch_path, '--run'])  # processingの実行
+    if cp.returncode != 0:  # processingの実行失敗時の処理
         message.send('Run is failed.')
-        sys.exit(1) # なぜか機能しないsys.exit()
+        sys.exit(1)  # なぜか機能しないsys.exit()
 
-    upload_sequence(message, arg) # upload処理
+    upload_sequence(message, arg)  # upload処理
 
 
 def shaping_code(code, option):
-    if option == '--png': # pngオプション
+    if option == '--png':  # pngオプション
         pictFunc = "  if((frameCount <= 15) && (frameCount % 15 == 0)) saveFrame(\"####.png\");\n  else if(frameCount > 15) exit();"
-    elif option == '--gif': # gifオプション
+    elif option == '--gif':  # gifオプション
         pictFunc = "  if((frameCount <= 300) && (frameCount % 15 == 0)) saveFrame(\"####.png\");\n  else if(frameCount > 300) exit();"
-    else : # デフォルトではpngで返す
+    else:  # デフォルトではpngで返す
         pictFunc = "  if((frameCount <= 15) && (frameCount % 15 == 0)) saveFrame(\"####.png\");\n  else if(frameCount > 15) exit();"
     return code.replace("void draw(){", "void draw(){\n" + pictFunc)
 
+
 def upload_sequence(message, option):
-    if option == '--png': # pngオプション
-        message.channel.upload_file(fname="sketch/0015.png", fpath="sketch/0015.png")
+    if option == '--png':  # pngオプション
+        message.channel.upload_file(
+            fname="sketch/0015.png", fpath="sketch/0015.png")
         for p in glob.glob('sketch/*.png'):
-                if os.path.isfile(p):
-                    os.remove(p)
-    elif option == '--gif': # gifオプション
+            if os.path.isfile(p):
+                os.remove(p)
+    elif option == '--gif':  # gifオプション
         time.sleep(6)
-        file_list = sorted(glob.glob('sketch/*.png'))  
-        images = list(map(lambda file : Image.open(file) , file_list))
-        images[0].save('sketch/output.gif' , save_all = True , append_images = images[1:] , duration = 400 , loop = 0)
+        file_list = sorted(glob.glob('sketch/*.png'))
+        images = list(map(lambda file: Image.open(file), file_list))
+        images[0].save('sketch/output.gif', save_all=True,
+                       append_images=images[1:], duration=400, loop=0)
         if os.path.exists('sketch/output.gif'):
-            message.channel.upload_file(fname="sketch/output.gif", fpath="sketch/output.gif")
+            message.channel.upload_file(
+                fname="sketch/output.gif", fpath="sketch/output.gif")
             for p in glob.glob('sketch/*.png'):
                 if os.path.isfile(p):
                     os.remove(p)
             os.remove('sketch/output.gif')
-    else : # デフォルトではpngでupload
-        message.channel.upload_file(fname="sketch/0015.png", fpath="sketch/0015.png")
+    else:  # デフォルトではpngでupload
+        message.channel.upload_file(
+            fname="sketch/0015.png", fpath="sketch/0015.png")
         for p in glob.glob('sketch/*.png'):
-                if os.path.isfile(p):
-                    os.remove(p)
+            if os.path.isfile(p):
+                os.remove(p)
