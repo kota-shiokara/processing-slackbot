@@ -14,7 +14,7 @@ from slackbot.bot import respond_to  # @botname: で反応するデコーダ
 from .cfg import *  # 同じ階層のcfg.pyからimport
 
 
-@listen_to('!exit')  # 使い物にならない関数
+@listen_to('!exit')  # exitコマンド:プロセスを終了する
 def kill_process(message):
     message.send('See you!')
     print('process finished')
@@ -41,8 +41,8 @@ def output(message, arg):  # argはオプション
     cp = subprocess.run(
         ['processing-java',  sketch_path, '--run'])
     if cp.returncode != 0:  # processingの実行失敗時の処理
-        message.send('Run is failed.')
-        os._exit(10)  # プロセスの強制終了
+        message.send('Run is failed. Please send your sketch again.')
+        return
 
     upload_sequence(message, arg)  # upload処理
 
