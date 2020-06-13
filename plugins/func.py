@@ -18,7 +18,7 @@ from .cfg import *  # 同じ階層のcfg.pyからimport
 def kill_process(message):
     message.send('See you!')
     print('process finished')
-    sys.exit()
+    os._exit(10)  # プロセスの強制終了
 
 
 @listen_to('!output (.*)')
@@ -45,7 +45,7 @@ def output(message, arg):  # argはオプション
         ['processing-java',  sketch_path, '--run'])  # processingの実行
     if cp.returncode != 0:  # processingの実行失敗時の処理
         message.send('Run is failed.')
-        sys.exit(1)  # なぜか機能しないsys.exit()
+        os._exit(10)  # プロセスの強制終了
 
     upload_sequence(message, arg)  # upload処理
 
