@@ -1,9 +1,18 @@
-from slackbot.bot import respond_to     # @botname: で反応するデコーダ
-from slackbot.bot import listen_to      # チャネル内発言で反応するデコーダ
-from slackbot.bot import default_reply  # 該当する応答がない場合に反応するデコーダ
-import sys, subprocess, os.path, os, glob, time
-from .cfg import * # 同じ階層のcfg.pyからimport
+import glob
+import os
+import os.path
+import subprocess
+import sys
+import time
+
 from PIL import Image
+
+from slackbot.bot import default_reply  # 該当する応答がない場合に反応するデコーダ
+from slackbot.bot import listen_to  # チャネル内発言で反応するデコーダ
+from slackbot.bot import respond_to  # @botname: で反応するデコーダ
+
+from .cfg import *  # 同じ階層のcfg.pyからimport
+
 
 @listen_to('!exit') # 使い物にならない関数
 def kill_process(message):
@@ -32,7 +41,7 @@ def output(message, arg): # argはオプション
     if cp.returncode != 0: # processingの実行失敗時の処理
         message.send('Run is failed.')
         sys.exit(1) # なぜか機能しないsys.exit()
-    
+
     upload_sequence(message, arg) # upload処理
 
 
@@ -67,4 +76,3 @@ def upload_sequence(message, option):
         for p in glob.glob('sketch/*.png'):
                 if os.path.isfile(p):
                     os.remove(p)
-
