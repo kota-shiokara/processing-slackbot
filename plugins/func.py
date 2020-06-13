@@ -37,12 +37,9 @@ def output(message, arg):  # argはオプション
     with open('sketch/sketch.pde', 'w') as f:
         f.write(pdeCode)
 
-    # f = open('sketch/sketch.pde', 'w')
-    # f.write(pdeCode)
-    # f.close()
-
+    # processingの実行
     cp = subprocess.run(
-        ['processing-java',  sketch_path, '--run'])  # processingの実行
+        ['processing-java',  sketch_path, '--run'])
     if cp.returncode != 0:  # processingの実行失敗時の処理
         message.send('Run is failed.')
         os._exit(10)  # プロセスの強制終了
