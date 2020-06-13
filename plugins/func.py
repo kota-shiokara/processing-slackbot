@@ -33,9 +33,12 @@ def output(message, arg): # argはオプション
 
     # pdeに上書き
     print(pdeCode)
-    f = open('sketch/sketch.pde', 'w')
-    f.write(pdeCode)
-    f.close()
+    with open('sketch/sketch.pde', 'w') as f:
+        f.write(pdeCode)
+        
+    # f = open('sketch/sketch.pde', 'w')
+    # f.write(pdeCode)
+    # f.close()
 
     cp = subprocess.run(['processing-java',  sketch_path, '--run']) # processingの実行
     if cp.returncode != 0: # processingの実行失敗時の処理
