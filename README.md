@@ -82,7 +82,19 @@ cfg.py:
 sketch_path = '--sketch=<sketchフォルダまでの絶対パス>'
 ```
 
-sketchファイルは空のままにしておきます。
+sketchファイルは空のままにしておきます。下記のような構造であれば進めて構いません。
+
+```
+processing-slackbot       # プログラムをまとめる<任意の文字列>ディレクトリ
+├─ run.py                 # bot起動のためのメインファイル
+├─ slackbot_settings.py   # botに関する設定を書くファイル
+├─ plugins                # botの機能はこのディレクトリに追加する
+   ├─ __init__.py         # 空で置いておくモジュールを示すためのファイル
+   └─ func.py             # 機能を書くファイル
+   └─ cfg.py              # スケッチのパスを置いておくファイル
+└─ sketch
+   └─ sketch.pde          # 一旦書き込むスケッチファイル。空でOK
+```
 
 <a id="chapter2-3"></a>
 
