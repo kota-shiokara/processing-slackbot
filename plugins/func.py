@@ -11,8 +11,6 @@ from slackbot.bot import default_reply  # 該当する応答がない場合に�
 from slackbot.bot import listen_to  # チャネル内発言で反応するデコーダ
 from slackbot.bot import respond_to  # @botname: で反応するデコーダ
 
-from .cfg import *  # 同じ階層のcfg.pyからimport
-
 
 @listen_to('!exit')  # exitコマンド:プロセスを終了する
 def kill_process(message):
@@ -38,6 +36,7 @@ def output(message, arg):  # argはオプション
         f.write(pdeCode)
 
     # processingの実行
+    sketch_path = '--sketch=' + os.path.abspath('./sketch')
     cp = subprocess.run(
         ['processing-java',  sketch_path, '--run'])
     if cp.returncode != 0:  # processingの実行失敗時の処理
