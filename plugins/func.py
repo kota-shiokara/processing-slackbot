@@ -4,6 +4,7 @@ import os.path
 import subprocess
 import sys
 import time
+import pathlib
 
 from PIL import Image
 
@@ -31,6 +32,9 @@ def output(message, arg):  # argはオプション
     message.send('wait...')
 
     # pdeに上書き
+    sketch_dir = pathlib.Path('./sketch')
+    if not sketch_dir.exists():
+        sketch_dir.mkdir()  # sketchディレクトリが無い時に生成
     print(pdeCode)
     with open('sketch/sketch.pde', 'w') as f:
         f.write(pdeCode)
