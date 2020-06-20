@@ -76,6 +76,8 @@ API_TOKEN = "<your-api-token>"
 PLUGINS = ['plugins']
 ```
 
+下記のような構造であれば進めて構いません。
+
 ```
 processing-slackbot       # プログラムをまとめる<任意の文字列>ディレクトリ
 ├─ run.py                 # bot起動のためのメインファイル
