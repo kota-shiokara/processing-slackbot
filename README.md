@@ -67,7 +67,7 @@ APIトークンの取得を行い、設定を保存してください。トー�
 <a id="chapter2-2"></a>
 
 ## botの設定
-processing-slackbotフォルダに`slackbot_settings.py`、`sketch`フォルダ及びその中に`sketch.pde`ファイルを作成してください。その後`slackbot_settings.py`を以下のように書いていきます。
+processing-slackbotフォルダに`slackbot_settings.py`を作成してください。その後`slackbot_settings.py`に以下のように書いていきます。
 
 slackbot_settings.py:
 
@@ -76,18 +76,16 @@ API_TOKEN = "<your-api-token>"
 PLUGINS = ['plugins']
 ```
 
-sketchファイルは空のままにしておきます。下記のような構造であれば進めて構いません。
-
 ```
 processing-slackbot       # プログラムをまとめる<任意の文字列>ディレクトリ
 ├─ run.py                 # bot起動のためのメインファイル
 ├─ slackbot_settings.py   # botに関する設定を書くファイル
-├─ plugins                # botの機能はこのディレクトリに追加する
+└─ plugins                # botの機能はこのディレクトリに追加する
    ├─ __init__.py         # 空で置いておくモジュールを示すためのファイル
    └─ func.py             # 機能を書くファイル
-└─ sketch
-   └─ sketch.pde          # 一旦書き込むスケッチファイル。空でOK
 ```
+
+尚、botが動く時に`sketch`フォルダ及び`sketch.pde`ファイルが生成されますが、気にしないでください。
 
 <a id="chapter2-3"></a>
 
