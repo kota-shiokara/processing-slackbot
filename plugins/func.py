@@ -22,13 +22,15 @@ def kill_process(message):
 
 @listen_to('!output (.*)')
 def output(message, arg):  # argはオプション
+    args = arg.split()  # オプションをリストで保持
+
     # 送信されたテキストを整形
     tmp = message.body['text']
     tmp = tmp.replace("&lt;", "<")
     tmp = tmp.replace("&gt;", ">")
 
     # pde上書き用の文字列に整形
-    pdeCode = shaping_code(tmp.strip("!output " + arg + "\n"), arg)
+    pdeCode = shaping_code(tmp.strip("!output " + arg + "\n"), args[0])
     message.send('wait...')
 
     # pdeに上書き
@@ -47,7 +49,7 @@ def output(message, arg):  # argはオプション
         message.send('Run is failed. Please send your sketch again.')
         return
 
-    upload_sequence(message, arg)  # upload処理
+    upload_sequence(message, args[0])  # upload処理
 
 
 def shaping_code(code, option):
